@@ -1,0 +1,28 @@
+{
+  "name": "angular-swfupload",
+  "version": "0.0.1",
+  "description": "Angular Wrapper for swfupload",
+  "main": "src/angular-swfupload.js",
+  "keywords": [
+    "angular",
+    "swfupload"
+  ],
+  "authors": [
+    "Leigh Zhu"
+  ],
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "components",
+    "bower_components",
+    "test*",
+    "demo*",
+    "GruntFile.js",
+    "package.json"
+  ],
+  "license": "MIT",
+  "homepage": "http://github.com/lisposter/angular-swfupload",
+  "dependencies": {
+    "angular": "~1.2.16"
+  }
+}
