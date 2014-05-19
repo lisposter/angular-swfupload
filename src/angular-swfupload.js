@@ -12,7 +12,9 @@ directive('uiSwfupload', ['$document', '$window', 'uiSwfupload',
         return {
             priority: 10,
             link: function(scope, elm, attrs) {
-                
+                if ( attrs.swfOption ) {
+			        var swfOption = scope.$parent.$eval(attrs.swfOption);
+			    }
             }
         }
     }
