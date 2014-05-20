@@ -14,7 +14,9 @@
 
   }]).
   controller('demoCtrl', ['$scope', function($scope) {
-    
+    $scope.config = {
+      test: 1
+    }    
   }]);
   </script>
 </head>
@@ -23,7 +25,7 @@
 <h1>Angular swfupload Demo</h1>
 
 <form action="">
-  <label for="">file: <input type="file" ui-swfupload ng-model="input"></label>
+  <label for="">file: <input type="file" ui-swfupload swf-option="config" ng-model="input"></label>
 
     
 </form>
