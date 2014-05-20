@@ -8,7 +8,7 @@
   <script src="../src/angular-swfupload.js"></script>
   <script>
   angular.module('demo', ['angular.swfupload']).
-  config(['uiSwfuploadProvider', function(uiSwfuploadProvider) {
+  config(['uiSwfuploadOptionsProvider', function(uiSwfuploadProvider) {
 
     
 
@@ -25,7 +25,7 @@
 <h1>Angular swfupload Demo</h1>
 
 <form action="">
-  <label for="">file: <input type="file" ui-swfupload swf-option="config" ng-model="input"></label>
+  <label for="">file: <input type="file" ui-swfupload swf-option="config" id="input" ng-model="input"></label>
 
     
 </form>
