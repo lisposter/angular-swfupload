@@ -9,14 +9,16 @@
   <script>
   angular.module('demo', ['angular.swfupload']).
   config(['uiSwfuploadOptionsProvider', function(uiSwfuploadProvider) {
+    uiSwfuploadProvider.setOption({
+        flash_url: '../lib/swfupload.swf'
+    });
 
-    
 
   }]).
   controller('demoCtrl', ['$scope', function($scope) {
     $scope.config = {
-      flash_url: '../lib/swfupload.swf'
-    }    
+        file_post_name: 'file'
+    }
   }]);
   </script>
 </head>
@@ -27,8 +29,8 @@
 <form action="">
   <label for="">file: <input type="file" ui-swfupload swf-option="config" id="input" ng-model="input"></label>
 
-    
+
 </form>
-  
+
 </body>
 </html>
