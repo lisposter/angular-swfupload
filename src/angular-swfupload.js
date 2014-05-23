@@ -58,18 +58,46 @@ provider('uiSwfuploadOptions', function() {
         }
     };
 
+    var defaultUpyun = {};
+
     this.setOption = function(options) {
         angular.extend(defaultOptions, options);
-    }
+    };
+
+    this.setUpyun = function(upyun) {
+        angular.extend(defaultUpyun, upyun);
+    };
 
     this.$get = function() {
-        return defaultOptions;
+        return {
+            defaultOptions: defaultOptions,
+            upyun: defaultOptions,
+        };
     };
 }).
 directive('uiSwfupload', ['$document', '$window', 'uiSwfuploadOptions',
     function($document, $window, uiSwfuploadOptions) {
 
+        function merge_config(origin, upyun) {
+            try {
+                var str = JSON.stringify(upyun);
+            }
+            catch(e) {
+                var str = {};
+            }
+
+            var upyun = JSON.parse(str);
+
+            return angular.extend(defaultOptions.post_params, upyun);
+
+        }
+
         var defaultOptions = uiSwfuploadOptions || {};
+        var upyun = uiSwfuploadOptions.upyun;
+
+        
+        defaultOptions = merge_config(defaultOptions, upyun);
+
 
         return {
             priority: 10,
