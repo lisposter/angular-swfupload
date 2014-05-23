@@ -91,7 +91,7 @@ directive('uiSwfupload', ['$document', '$window', 'uiSwfuploadOptions',
             }
 
             var upyun = JSON.parse(str);
-
+            defaultOptions.upload_url += upyun.bucket;
             return angular.extend(defaultOptions.post_params, upyun);
 
         }
