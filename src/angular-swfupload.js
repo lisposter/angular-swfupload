@@ -86,6 +86,10 @@ directive('uiSwfupload', ['$document', '$window', 'uiSwfuploadOptions',
                 var str = {};
             }
 
+            if (!upyun.bucket || !upyun['save-key'] || !upyun.expiration) {
+                return;
+            }
+
             var upyun = JSON.parse(str);
 
             return angular.extend(defaultOptions.post_params, upyun);
@@ -103,8 +107,9 @@ directive('uiSwfupload', ['$document', '$window', 'uiSwfuploadOptions',
             priority: 10,
             link: function(scope, elm, attrs) {
                 if ( attrs.swfOption ) {
-			        var swfOption = scope[attrs.swfOption]
-                    var options = angular.extend(defaultOptions, swfOption);
+			        var swfOption = scope[attrs.swfOption];
+                    var options = angular.extend({}, defaultOptions);
+                    var options = angular.extend(options, swfOption);
                     options.button_placeholder_id = attrs.id;
                     scope[attrs.id] = new SWFUpload(options);
 			    }
