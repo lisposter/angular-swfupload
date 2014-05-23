@@ -2,10 +2,10 @@ angular.module('angular.swfupload', []).
 provider('uiSwfuploadOptions', function() {
 
     var defaultOptions = {
-        upload_url : "",
+        upload_url : "http://v0.api.upyun.com/",
         flash_url : "swfupload.swf",
 
-        file_post_name : "Filedata",
+        file_post_name : "file",
         post_params : {
             "post_param_name_1" : "post_param_value_1",
             "post_param_name_2" : "post_param_value_2",
@@ -15,13 +15,13 @@ provider('uiSwfuploadOptions', function() {
         requeue_on_error : false,
         http_success : [201, 202],
         assume_success_timeout : 0,
-        file_types : "*.jpg;*.gif",
+        file_types : "*.jpg;*.gif;*.png",
         file_types_description: "Web Image Files",
         file_size_limit : "1024",
         file_upload_limit : 10,
         file_queue_limit : 2,
 
-        debug : false,
+        debug : true,
 
         prevent_swf_caching : false,
         preserve_relative_urls : false,
@@ -71,7 +71,7 @@ provider('uiSwfuploadOptions', function() {
     this.$get = function() {
         return {
             defaultOptions: defaultOptions,
-            upyun: defaultOptions,
+            upyun: defaultUpyun,
         };
     };
 }).
@@ -79,28 +79,43 @@ directive('uiSwfupload', ['$document', '$window', 'uiSwfuploadOptions',
     function($document, $window, uiSwfuploadOptions) {
 
         function merge_config(origin, upyun) {
-            try {
+
+            if(upyun.options) {
                 var str = JSON.stringify(upyun);
-            }
-            catch(e) {
-                var str = {};
-            }
-
-            if (!upyun.bucket || !upyun['save-key'] || !upyun.expiration) {
-                return;
+            } else {
+                return defaultOptions;
             }
 
-            var upyun = JSON.parse(str);
-            defaultOptions.upload_url += upyun.bucket;
-            return angular.extend(defaultOptions.post_params, upyun);
+            
+
+            // if (!upyun.options.bucket || !upyun.options['save-key'] || !upyun.options.expiration) {
+            //     return;
+            // }
+
+            upyun = JSON.parse(str);
+
+            var policy = window.btoa(JSON.stringify(upyun.options));
+
+            var form_api_secret = upyun.form_api_secret;
+
+            var signature = md5(policy + '&' + form_api_secret);
+
+            defaultOptions.upload_url += upyun.options.bucket;
+
+            defaultOptions.post_params = {
+                "policy": policy,
+                "signature": signature
+            };
+
+            return defaultOptions;
 
         }
 
-        var defaultOptions = uiSwfuploadOptions || {};
-        var upyun = uiSwfuploadOptions.upyun;
+        var defaultOptions = uiSwfuploadOptions.defaultOptions || {};
+        var upyunConfig = uiSwfuploadOptions.upyun;
 
         
-        defaultOptions = merge_config(defaultOptions, upyun);
+        defaultOptions = merge_config(defaultOptions, upyunConfig);
 
 
         return {
@@ -108,8 +123,10 @@ directive('uiSwfupload', ['$document', '$window', 'uiSwfuploadOptions',
             link: function(scope, elm, attrs) {
                 if ( attrs.swfOption ) {
 			        var swfOption = scope[attrs.swfOption];
-                    var options = angular.extend({}, defaultOptions);
-                    var options = angular.extend(options, swfOption);
+                    var upyun = scope[attrs.upyun];
+                    
+                    swfOption = merge_config(swfOption, upyun);
+                    var options = angular.extend(swfOption, swfOption);
                     options.button_placeholder_id = attrs.id;
                     scope[attrs.id] = new SWFUpload(options);
 			    }

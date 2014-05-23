@@ -20,6 +20,20 @@
     $scope.config = {
         file_post_name: 'file'
     }
+
+    $scope.upyun = {
+        options: {
+          "bucket": 'lisposter',
+          "save-key": '/test000.png',
+          "expiration": 10000000000000000
+        },
+        "form_api_secret": ''
+    }
+
+    $scope.upload = function() {
+      $scope.input.startUpload();
+    }
+
   }]);
   </script>
 </head>
@@ -28,7 +42,9 @@
 <h1>Angular swfupload Demo</h1>
 
 <form action="">
-  <label for="">file: <input type="file" ui-swfupload swf-option="config" id="input" ng-model="input"></label>
+  <label for="">file: <input type="file" ui-swfupload swf-option="config" upyun="upyun" id="input" ng-model="input"></label>
+
+  <button ng-click="upload()">upload</button>
 
 
 </form>
