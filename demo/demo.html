@@ -17,7 +17,9 @@
   }]).
   controller('demoCtrl', ['$scope', function($scope) {
     $scope.config = {
-        file_post_name: 'file'
+        file_post_name: 'file',
+        button_text : '<b>Click</b> <span class="redText">here</span>',
+        button_text_style : ".redText { color: #FF0000; }"
     }
 
     $scope.upload = function() {

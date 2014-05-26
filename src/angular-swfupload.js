@@ -1,3 +1,8 @@
+/**
+ * angular-swfupload
+ * https://github.com/lisposter/angular-swfupload
+ * Copyright (c) 2014 Leigh Zhu; Licensed MIT
+ */
 angular.module('angular.swfupload', []).
 provider('uiSwfuploadOptions', function() {
 
@@ -7,15 +12,12 @@ provider('uiSwfuploadOptions', function() {
 
         file_post_name : "Filedata",
         post_params : {
-            "post_param_name_1" : "post_param_value_1",
-            "post_param_name_2" : "post_param_value_2",
-            "post_param_name_n" : "post_param_value_n"
         },
         use_query_string : false,
         requeue_on_error : false,
         http_success : [201, 202],
         assume_success_timeout : 0,
-        file_types : "*.jpg;*.gif",
+        file_types : "*.jpg;*.gif;*.png",
         file_types_description: "Web Image Files",
         file_size_limit : "1024",
         file_upload_limit : 10,
@@ -27,11 +29,11 @@ provider('uiSwfuploadOptions', function() {
         preserve_relative_urls : false,
 
         button_placeholder_id : "",
-        button_image_url : "http://www.swfupload.org/button_sprite.png",
+        button_image_url : "",
         button_width : 61,
         button_height : 22,
-        button_text : '<b>Click</b> <span class="redText">here</span>',
-        button_text_style : ".redText { color: #FF0000; }",
+        button_text : '',
+        button_text_style : "",
         button_text_left_padding : 3,
         button_text_top_padding : 2,
         button_action : SWFUpload.BUTTON_ACTION.SELECT_FILES,
@@ -52,9 +54,6 @@ provider('uiSwfuploadOptions', function() {
         debug_handler : null,
 
         custom_settings : {
-            custom_setting_1 : "custom_setting_value_1",
-            custom_setting_2 : "custom_setting_value_2",
-            custom_setting_n : "custom_setting_value_n",
         }
     };
 
