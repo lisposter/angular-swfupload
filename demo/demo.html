@@ -19,6 +19,10 @@
     $scope.config = {
         file_post_name: 'file'
     }
+
+    $scope.upload = function() {
+      $scope.input.startUpload();
+    }
   }]);
   </script>
 </head>
@@ -28,6 +32,8 @@
 
 <form action="">
   <label for="">file: <input type="file" ui-swfupload swf-option="config" id="input" ng-model="input"></label>
+
+  <button ng-click="upload()">upload</button>
 
 
 </form>
