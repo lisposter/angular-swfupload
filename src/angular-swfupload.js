@@ -75,7 +75,7 @@ directive('uiSwfupload', ['$document', '$window', 'uiSwfuploadOptions',
             priority: 10,
             link: function(scope, elm, attrs) {
                 if ( attrs.swfOption ) {
-			        var swfOption = scope[attrs.swfOption]
+			        var swfOption = scope[attrs.swfOption];
                     var options = angular.extend(defaultOptions, swfOption);
                     options.button_placeholder_id = attrs.id;
                     scope[attrs.id] = new SWFUpload(options);
