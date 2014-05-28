@@ -80,6 +80,19 @@ MAKE SURE!
 The most config are not required, but before you use it, make sure you have config the `upload_url` and `flash_url`, or it won't work in your way. :)
 
 
+## Usage
+
+## scope
+
+When the uploader init. A reference will created in the scope which the directive located. and the variable of the reference is just the `id` of the directive.
+
+then, you can do something like the swfupload events handling through this reference.
+
+exp:
+```js
+$scope.someId.method()
+```
+
 
 ## LICENSE
 

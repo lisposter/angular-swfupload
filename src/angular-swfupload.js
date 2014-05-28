@@ -53,8 +53,7 @@ provider('uiSwfuploadOptions', function() {
         upload_complete_handler : null,
         debug_handler : null,
 
-        custom_settings : {
-        }
+        custom_settings : {}
     };
 
     this.setOption = function(options) {
