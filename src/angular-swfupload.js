@@ -67,12 +67,11 @@ provider('uiSwfuploadOptions', function() {
 directive('uiSwfupload', ['$document', '$window', 'uiSwfuploadOptions',
     function($document, $window, uiSwfuploadOptions) {
 
-        var defaultOptions = uiSwfuploadOptions || {};
-
         return {
             priority: 10,
             link: function(scope, elm, attrs) {
                 if ( attrs.swfOption ) {
+                    var defaultOptions = uiSwfuploadOptions ? angular.copy(uiSwfuploadOptions) : {};
 			        var swfOption = scope[attrs.swfOption];
                     var options = angular.extend(defaultOptions, swfOption);
                     options.button_placeholder_id = attrs.id;
