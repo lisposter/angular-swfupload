@@ -126,7 +126,7 @@ directive('uiSwfupload', ['$document', '$window', 'uiSwfuploadOptions',
                     var upyun = scope[attrs.upyun];
                     
                     swfOption = merge_config(swfOption, upyun);
-                    var options = angular.extend(swfOption, swfOption);
+                    var options = angular.extend(angular.copy(swfOption), swfOption);
                     options.button_placeholder_id = attrs.id;
                     scope[attrs.id] = new SWFUpload(options);
 			    }
