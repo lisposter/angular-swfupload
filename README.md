@@ -1,7 +1,27 @@
 # Angular swfupload
+This directive makes using swfupload in Angular.js project more beautiful.
 
+## Install
 
-In dev now
+1. Download swfupload official lib, grab the `swfupload.js` && `swfupload.swf`.
+
+2. Download this rep.
+
+    ```sh
+      bower install angular-swfupload
+    ```
+    or, just click the download link from [release page](https://github.com/lisposter/angular-swfupload/releases)
+
+3. [Optional] Install the deps. (It doesn't require lot of deps. just `Angular.js`)
+
+## Usage
+
+1. add `angular.swfupload` to your app's deps.
+
+2. add attribute `ui-swfupload` and `swf-option='somevar'`.
+
+3. Bind the `somevar` (which you added in 1.) to an object of config in your controller.
+
 
 
 
@@ -79,8 +99,6 @@ MAKE SURE!
 
 The most config are not required, but before you use it, make sure you have config the `upload_url` and `flash_url`, or it won't work in your way. :)
 
-
-## Usage
 
 ## scope
 
