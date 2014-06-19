@@ -1,6 +1,6 @@
 {
   "name": "angular-swfupload",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "description": "Angular Wrapper for swfupload",
   "main": "src/angular-swfupload.js",
   "keywords": [
